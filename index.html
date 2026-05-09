@@ -33,8 +33,8 @@
   .nav-links a{text-decoration:none;color:var(--text);font-size:14px;font-weight:500;transition:color .2s}
   .nav-links a:hover{color:var(--brand)}
   .nav-links .dropdown{position:relative}
-  .nav-links .dropdown-menu{display:none;position:absolute;top:calc(100% + 12px);left:0;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);min-width:220px;padding:.5rem;z-index:200}
-  .nav-links .dropdown:hover .dropdown-menu{display:block}
+  .nav-links .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);min-width:220px;padding:.5rem;z-index:200}
+  .nav-links .dropdown-menu.open{display:block}
   .nav-links .dropdown-menu a{display:block;padding:.6rem .9rem;border-radius:var(--radius);font-size:13px;color:var(--heading)}
   .nav-links .dropdown-menu a:hover{background:var(--light-bg)}
   .nav-cta{display:flex;align-items:center;gap:.75rem}
@@ -220,7 +220,6 @@
           <a href="#bitharvest">BitHarvest — Blockchain & Mining</a>
         </div>
       </div>
-      <a href="#bmad">BMAD Framework</a>
       <a href="#industries">Industries</a>
       <a href="#contact">Contact</a>
     </div>
@@ -707,16 +706,39 @@
 </footer>
 
 <script>
+  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',e=>{
       const t=document.querySelector(a.getAttribute('href'));
       if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
     })
   });
+
+  // Nav shadow on scroll
   window.addEventListener('scroll',()=>{
     const n=document.querySelector('nav');
     n.style.boxShadow=window.scrollY>20?'0 2px 20px rgba(10,37,64,.12)':'none'
-  })
+  });
+
+  // Dropdown: toggle on click, close when clicking outside
+  document.querySelectorAll('.nav-links .dropdown').forEach(dd=>{
+    const toggle = dd.querySelector('a');
+    const menu = dd.querySelector('.dropdown-menu');
+    toggle.addEventListener('click', e=>{
+      e.preventDefault();
+      const isOpen = menu.classList.contains('open');
+      // Close all dropdowns first
+      document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('open'));
+      if(!isOpen) menu.classList.add('open');
+    });
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', e=>{
+    if(!e.target.closest('.dropdown')){
+      document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('open'));
+    }
+  });
 </script>
 </body>
 </html>
