@@ -195,6 +195,24 @@
     .section-title{font-size:1.75rem}
     .hero h1{font-size:1.9rem}
   }
+
+  /* MOBILE NAV */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:transparent;z-index:200}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--heading);border-radius:2px;transition:all .3s}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);box-shadow:0 8px 24px rgba(10,37,64,.12);z-index:99;padding:1rem 0;max-height:calc(100vh - 64px);overflow-y:auto}
+  .mobile-menu.open{display:block}
+  .mobile-menu a{display:block;padding:.75rem 1.5rem;font-size:15px;font-weight:500;color:var(--heading);text-decoration:none;border-bottom:1px solid var(--light-bg)}
+  .mobile-menu a:hover{background:var(--light-bg);color:var(--brand)}
+  .mobile-menu .m-section{padding:.5rem 1.5rem .25rem;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);background:var(--light-bg)}
+  .mobile-menu .m-cta{margin:1rem 1.5rem;display:block;text-align:center;background:var(--brand);color:#fff;padding:.75rem;border-radius:var(--radius);font-weight:700}
+  @media(max-width:900px){
+    .hamburger{display:flex}
+    .nav-links{display:none!important}
+    .nav-cta{display:none!important}
+  }
 </style>
 </head>
 <body>
@@ -232,6 +250,26 @@
     <div class="nav-cta">
       <a href="contact.html" class="btn btn-primary">Get started →</a>
     </div>
+  
+<!-- MOBILE MENU -->
+<button class="hamburger" id="hamburger" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="m-section">Products &amp; Services</div>
+  <a href="offshore.html">Offshore Software Development</a>
+  <a href="togaf.html">TOGAF Enterprise Architecture</a>
+  <a href="ba.html">Business Analysis Service</a>
+  <a href="index.html#bitharvest">Blockchain &amp; Crypto Mining</a>
+  <div class="m-section">Partners</div>
+  <a href="index.html#partners">Hank Times</a>
+  <a href="index.html#bitharvest">BitHarvest</a>
+  <div class="m-section">Company</div>
+  <a href="about.html">About Riki-Tech</a>
+  <a href="contact.html">Contact</a>
+  <a href="partner.html">Become a Partner</a>
+  <a href="contact.html" class="m-cta">Get started →</a>
+</div>
   </div>
 </nav>
 
@@ -744,6 +782,30 @@
       document.querySelectorAll('.dropdown-menu').forEach(m=>m.classList.remove('open'));
     }
   });
+
+  // Hamburger menu
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('mobileMenu');
+  if(ham && mob){
+    ham.addEventListener('click', ()=>{
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+    });
+    // Close on link click
+    mob.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        ham.classList.remove('open');
+        mob.classList.remove('open');
+      });
+    });
+    // Close on outside click
+    document.addEventListener('click', e=>{
+      if(!e.target.closest('#hamburger') && !e.target.closest('#mobileMenu')){
+        ham.classList.remove('open');
+        mob.classList.remove('open');
+      }
+    });
+  }
 </script>
 </body>
 </html>
