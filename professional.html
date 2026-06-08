@@ -159,7 +159,32 @@
     .hero h1{font-size:2rem}
   }
   .nav-cta{display:flex;align-items:center;gap:.75rem}
-  </style>
+  
+  /* WORK SAMPLES */
+  .samples-section{margin-top:3.5rem;padding-top:3rem;border-top:2px solid var(--border)}
+  .samples-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.5rem}
+  .sample-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:all .25s;cursor:pointer;text-decoration:none;display:block}
+  .sample-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--brand)}
+  .sample-card img{width:100%;height:180px;object-fit:cover;display:block;background:#f8f9fa}
+  .sample-card-body{padding:1rem}
+  .sample-card-body h4{font-size:.85rem;font-weight:700;color:var(--heading);margin-bottom:.3rem;line-height:1.4}
+  .sample-card-body p{font-size:12px;color:var(--muted);line-height:1.5}
+  .ba-sample-cta{background:linear-gradient(135deg,#0f766e,#0d9488);border-radius:var(--radius-xl);padding:2.5rem;text-align:center;margin-top:1.5rem}
+  .ba-sample-cta h3{font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:.6rem}
+  .ba-sample-cta p{font-size:.9rem;color:rgba(255,255,255,.85);margin-bottom:1.5rem;line-height:1.6}
+  .ba-sample-meta{display:inline-flex;align-items:center;gap:1.5rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-lg);padding:.75rem 1.5rem;margin-bottom:1.5rem;flex-wrap:wrap;justify-content:center}
+  .ba-sample-meta span{font-size:12px;color:rgba(255,255,255,.9)}
+  .btn-sample{display:inline-flex;align-items:center;gap:.5rem;background:#fff;color:#0f766e;font-weight:700;font-size:.9rem;padding:.75rem 1.75rem;border-radius:var(--radius-lg);text-decoration:none;transition:all .2s}
+  .btn-sample:hover{background:#f0fdf4;transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+  /* Lightbox */
+  .lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:9999;align-items:center;justify-content:center;padding:2rem}
+  .lb-overlay.open{display:flex}
+  .lb-inner{position:relative;max-width:90vw;max-height:90vh}
+  .lb-inner img{max-width:100%;max-height:88vh;border-radius:var(--radius-lg);object-fit:contain;display:block}
+  .lb-close{position:absolute;top:-2rem;right:0;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;line-height:1}
+  .lb-caption{color:#fff;text-align:center;font-size:13px;margin-top:.75rem;opacity:.85}
+
+</style>
 </head>
 <body>
 
@@ -336,6 +361,60 @@
         <div class="domain-card" style="--d-color:#10B981"><div class="domain-icon" style="background:#ECFDF5">⚙️</div><h3>Application Architecture</h3><p>Blueprint for applications, their interactions, and relationships to business processes.</p></div>
         <div class="domain-card" style="--d-color:#F59E0B"><div class="domain-icon" style="background:#FFFBEB">🖥️</div><h3>Technology Architecture</h3><p>Software and hardware capabilities required for business, data, and application services.</p></div>
       </div>
+
+      <!-- EA Working Samples -->
+      <div class="samples-section">
+        <div style="text-align:center;margin-bottom:.5rem">
+          <span class="section-tag">Real Client Work</span>
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--heading);margin-top:.4rem">EA Working Samples</h3>
+          <p style="font-size:.9rem;color:var(--muted);margin-top:.4rem">Click any diagram to view full size</p>
+        </div>
+        <div class="samples-grid">
+          <a class="sample-card" onclick="openLB('images/CMI.jpg','CMI Product Architecture — Business Motivation &amp; Product Capability Map (ArchiMate)')" href="javascript:void(0)">
+            <img src="images/CMI.jpg" alt="CMI Product Architecture" loading="lazy">
+            <div class="sample-card-body">
+              <h4>CMI Product Architecture</h4>
+              <p>Business Motivation &amp; Product Capability Map modelled in ArchiMate</p>
+            </div>
+          </a>
+          <a class="sample-card" onclick="openLB('images/Sample deliverable, Architecture Repository (Index archimate map).jpg','Architecture Repository — Index ArchiMate Map')" href="javascript:void(0)">
+            <img src="images/Sample deliverable, Architecture Repository (Index archimate map).jpg" alt="Architecture Repository Index" loading="lazy">
+            <div class="sample-card-body">
+              <h4>Architecture Repository</h4>
+              <p>Index ArchiMate Map — full TOGAF EA Repository overview</p>
+            </div>
+          </a>
+          <a class="sample-card" onclick="openLB('images/Sample deliverable, BMM View - Business Motiveation Mode View.jpg','BMM View — Business Motivation Model')" href="javascript:void(0)">
+            <img src="images/Sample deliverable, BMM View - Business Motiveation Mode View.jpg" alt="BMM View" loading="lazy">
+            <div class="sample-card-body">
+              <h4>BMM View</h4>
+              <p>Business Motivation Model — goals, drivers, assessments &amp; strategy</p>
+            </div>
+          </a>
+          <a class="sample-card" onclick="openLB('images/Sample deliverable, TOGAF Core Layers views - Business Service.jpg','TOGAF Core Layers — Business Service View')" href="javascript:void(0)">
+            <img src="images/Sample deliverable, TOGAF Core Layers views - Business Service.jpg" alt="TOGAF Core Layers Business Service" loading="lazy">
+            <div class="sample-card-body">
+              <h4>TOGAF Core Layers — Business Service</h4>
+              <p>ArchiMate layered view across business, application &amp; technology domains</p>
+            </div>
+          </a>
+          <a class="sample-card" onclick="openLB('images/Sample deliverable, TOGAF Core Layers views - Product Features and Ecosystem for a web 3.0 crypto mining product.jpg','TOGAF Core Layers — Web 3.0 Crypto Mining Product Ecosystem')" href="javascript:void(0)">
+            <img src="images/Sample deliverable, TOGAF Core Layers views - Product Features and Ecosystem for a web 3.0 crypto mining product.jpg" alt="TOGAF Core Layers Crypto" loading="lazy">
+            <div class="sample-card-body">
+              <h4>TOGAF Core Layers — Crypto Mining</h4>
+              <p>Product features &amp; ecosystem for a Web 3.0 crypto mining product</p>
+            </div>
+          </a>
+          <a class="sample-card" onclick="openLB('images/sample - TOGAF ADM - Archimate Views Map.png','TOGAF ADM — ArchiMate Views Map')" href="javascript:void(0)">
+            <img src="images/sample - TOGAF ADM - Archimate Views Map.png" alt="TOGAF ADM Views Map" loading="lazy">
+            <div class="sample-card-body">
+              <h4>TOGAF ADM — ArchiMate Views Map</h4>
+              <p>Full ADM phase-to-view mapping across all TOGAF architecture layers</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
       <div style="text-align:center;margin-top:3rem">
         <a href="contact.html" class="btn btn-primary btn-lg">Start EA engagement →</a>
       </div>
@@ -395,6 +474,36 @@
         <div class="ba-card" style="--c:#F59E0B"><div class="ba-icon" style="background:#FFFBEB">📋</div><h3>Requirements Management</h3><p>Requirement collection, documentation, repository management, and knowledge base management.</p></div>
         <div class="ba-card" style="--c:#8B5CF6"><div class="ba-icon" style="background:#F5F3FF">🛡️</div><h3>Business Continuity</h3><p>BCP strategy, BIA/Risk Analysis, Disaster Recovery design, KCS Knowledge Base maturity and management.</p></div>
       </div>
+
+      <!-- BA Working Samples -->
+      <div class="samples-section">
+        <div style="text-align:center;margin-bottom:.5rem">
+          <span class="section-tag">Real Client Work</span>
+          <h3 style="font-size:1.25rem;font-weight:700;color:var(--heading);margin-top:.4rem">BA Working Samples</h3>
+        </div>
+        <div class="samples-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+          <a class="sample-card" onclick="openLB('images/sample - Business Analysis Archimate Views.png','Business Analysis — ArchiMate Views')" href="javascript:void(0)">
+            <img src="images/sample - Business Analysis Archimate Views.png" alt="BA ArchiMate Views" loading="lazy">
+            <div class="sample-card-body">
+              <h4>BA ArchiMate Views</h4>
+              <p>Business Analysis modelled in ArchiMate — process, capability &amp; stakeholder views</p>
+            </div>
+          </a>
+        </div>
+        <div class="ba-sample-cta" style="margin-top:1.5rem">
+          <h3>🖥️ Live BA Dashboard Sample</h3>
+          <p>Explore a real Business Analysis project dashboard — built with our BMAD framework, showcasing requirements management, sprint tracking, risk registers and stakeholder reporting.</p>
+          <div class="ba-sample-meta">
+            <span>🔗 SuperQi Project Dashboard</span>
+            <span>👤 Username: <strong>Superqi2026</strong></span>
+            <span>🔑 Password: <strong>Superqi2026</strong></span>
+          </div>
+          <a href="https://xyb5531676.github.io/SuperQi-Dashboard/" target="_blank" rel="noopener" class="btn-sample">
+            🚀 Open Live Dashboard
+          </a>
+        </div>
+      </div>
+
       <div style="text-align:center;margin-top:3rem">
         <a href="contact.html" class="btn btn-teal btn-lg">Start BA engagement →</a>
       </div>
@@ -486,5 +595,31 @@
     document.addEventListener('click',e=>{if(!e.target.closest('#hamburger')&&!e.target.closest('#mobileMenu')){ham.classList.remove('open');mob.classList.remove('open')}});
   }
 </script>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay" onclick="closeLB(event)">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLB(null)">✕</button>
+    <img id="lbImg" src="" alt="">
+    <p class="lb-caption" id="lbCaption"></p>
+  </div>
+</div>
+<script>
+function openLB(src, caption){
+  document.getElementById('lbImg').src = src;
+  document.getElementById('lbCaption').textContent = caption;
+  document.getElementById('lbOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLB(e){
+  if(!e || e.target===document.getElementById('lbOverlay')){
+    document.getElementById('lbOverlay').classList.remove('open');
+    document.body.style.overflow='';
+    document.getElementById('lbImg').src='';
+  }
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(null); });
+</script>
+
 </body>
 </html>
